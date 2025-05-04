@@ -119,6 +119,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            flex-wrap: wrap;
         }
 
         .top-links a, .account-links a {
@@ -134,6 +135,7 @@
         .account-links {
             display: flex;
             align-items: center;
+            flex-wrap: wrap;
         }
 
         .cart-link {
@@ -161,6 +163,9 @@
             padding: 15px 0;
             background-color: var(--white);
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
         }
 
         .header-container {
@@ -168,13 +173,14 @@
             flex-direction: row;
             align-items: center;
             justify-content: space-between;
+            flex-wrap: wrap;
         }
 
         .logo-container {
             width: 80px;
             height: 80px;
             border-radius: 50%;
-            background-color: #000000; /* Changed to black */
+            background-color: #000000;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -194,16 +200,20 @@
             display: flex;
             align-items: center;
             gap: 20px;
+            flex: 1;
+            justify-content: flex-end;
         }
 
         .search-bar {
             flex: 1;
             max-width: 600px;
             margin: 0 20px;
+            min-width: 200px;
         }
 
         .search-bar form {
             display: flex;
+            width: 100%;
         }
 
         .search-bar input {
@@ -212,6 +222,7 @@
             border: 1px solid #ddd;
             border-radius: 4px 0 0 4px;
             font-family: 'Poppins', sans-serif;
+            width: 100%;
         }
 
         .search-bar button {
@@ -221,6 +232,9 @@
             padding: 0 20px;
             border-radius: 0 4px 4px 0;
             cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .header-account-links {
@@ -245,15 +259,30 @@
         /* Navigation */
         nav {
             background-color: var(--primary);
+            position: sticky;
+            top: 110px;
+            z-index: 99;
+        }
+
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            padding: 10px;
+            cursor: pointer;
         }
 
         .main-nav {
             display: flex;
             justify-content: center;
+            transition: all 0.3s ease;
         }
 
         .main-nav ul {
             display: flex;
+            list-style: none;
         }
 
         .main-nav li {
@@ -321,11 +350,13 @@
         .hero h2 {
             font-size: 3rem;
             margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
         }
 
         .hero p {
             font-size: 1.2rem;
             margin-bottom: 30px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
         }
 
         /* Product Categories */
@@ -356,6 +387,11 @@
             width: 100%;
             height: 250px;
             object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .category-card:hover img {
+            transform: scale(1.05);
         }
 
         .category-info {
@@ -389,6 +425,7 @@
         .filter-group {
             display: flex;
             flex-direction: column;
+            min-width: 150px;
         }
 
         .filter-label {
@@ -402,6 +439,7 @@
             border: 1px solid #ddd;
             border-radius: 4px;
             font-family: 'Poppins', sans-serif;
+            background-color: white;
         }
 
         /* Products Grid */
@@ -426,6 +464,40 @@
             box-shadow: 0 15px 30px rgba(0,0,0,0.15);
         }
 
+        .product-image-container {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .product-img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .product-card:hover .product-img {
+            transform: scale(1.05);
+        }
+
+        .quick-view-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .product-card:hover .quick-view-overlay {
+            opacity: 1;
+        }
+
         .product-badge {
             position: absolute;
             top: 15px;
@@ -436,6 +508,7 @@
             border-radius: 4px;
             font-size: 0.8rem;
             font-weight: bold;
+            z-index: 2;
         }
 
         .product-badge.sale {
@@ -445,12 +518,6 @@
         .product-badge.hot {
             background-color: var(--warning);
             color: var(--dark);
-        }
-
-        .product-img {
-            width: 100%;
-            height: 250px;
-            object-fit: cover;
         }
 
         .product-info {
@@ -539,6 +606,9 @@
             font-size: 1.5rem;
             cursor: pointer;
             transition: transform 0.3s;
+            background: none;
+            border: none;
+            color: white;
         }
 
         .close-modal:hover {
@@ -636,6 +706,9 @@
             border: none;
             font-size: 1.2rem;
             cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .quantity-selector input {
@@ -644,11 +717,13 @@
             text-align: center;
             border: 1px solid #ddd;
             font-size: 1rem;
+            margin: 0 5px;
         }
 
         .modal-actions {
             display: flex;
             gap: 15px;
+            flex-wrap: wrap;
         }
 
         /* About Section */
@@ -914,10 +989,74 @@
             box-shadow: 0 8px 25px rgba(0,0,0,0.3);
         }
 
+        /* Cart Sidebar */
+        .cart-sidebar {
+            position: fixed;
+            top: 0;
+            right: -400px;
+            width: 400px;
+            height: 100vh;
+            background: white;
+            box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+            transition: right 0.3s;
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .cart-sidebar.active {
+            right: 0;
+        }
+
+        .cart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .close-cart {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .cart-items {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px;
+        }
+
+        .cart-footer {
+            padding: 20px;
+            border-top: 1px solid #eee;
+        }
+
+        .cart-total {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+
         /* Responsive Styles */
         @media (max-width: 992px) {
             .hero h2 {
                 font-size: 2.5rem;
+            }
+            
+            .modal-body {
+                flex-direction: column;
+            }
+            
+            .modal-product-images,
+            .modal-product-info {
+                min-width: 100%;
             }
         }
 
@@ -929,14 +1068,16 @@
             
             .top-links, .account-links {
                 margin-bottom: 10px;
+                justify-content: center;
             }
             
             .account-links {
-                justify-content: center;
+                width: 100%;
             }
             
             .header-container {
                 flex-direction: column;
+                align-items: center;
             }
             
             .logo-container {
@@ -946,6 +1087,7 @@
             .search-bar {
                 width: 100%;
                 margin: 15px 0;
+                order: 3;
             }
             
             .header-right {
@@ -953,9 +1095,23 @@
                 justify-content: center;
             }
             
+            .mobile-menu-toggle {
+                display: block;
+            }
+            
             .main-nav ul {
                 flex-direction: column;
-                align-items: center;
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: var(--primary);
+                z-index: 100;
+            }
+            
+            .main-nav.active ul {
+                display: flex;
             }
             
             .dropdown-menu {
@@ -984,8 +1140,9 @@
                 font-size: 1.8rem;
             }
 
-            .modal-body {
-                flex-direction: column;
+            .cart-sidebar {
+                width: 100%;
+                right: -100%;
             }
         }
 
@@ -1014,6 +1171,18 @@
                 bottom: 20px;
                 right: 20px;
             }
+            
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .modal-actions .btn {
+                width: 100%;
+            }
+            
+            .product-actions {
+                flex-direction: column;
+            }
         }
     </style>
 </head>
@@ -1022,7 +1191,7 @@
     <div class="top-bar">
         <div class="container">
             <div class="top-links">
-                <a href="tel:><i class="fas fa-phone"></i> +1 234 567 890</a>
+                <a href="tel:+1234567890"><i class="fas fa-phone"></i> +1 234 567 890</a>
                 <a href="mailto:info@hnfinterior.com"><i class="fas fa-envelope"></i> info@hnfinterior.com</a>
             </div>
             <div class="account-links">
@@ -1063,21 +1232,26 @@
     <!-- Navigation -->
     <nav>
         <div class="container">
-            <ul class="main-nav">
-                <li><a href="#">Home</a></li>
-                <li class="dropdown">
-                    <a href="#">Products <i class="fas fa-chevron-down"></i></a>
-                    <div class="dropdown-menu">
-                        <a href="#wallpaper">Wallpaper</a>
-                        <a href="#marble-sheets">Marble Sheets</a>
-                        <a href="#wall-panels">Wall Panels</a>
-                        <a href="#outdoor-panels">Outdoor Panels</a>
-                    </div>
-                </li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#gallery">Gallery</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
+            <button class="mobile-menu-toggle">
+                <i class="fas fa-bars"></i> Menu
+            </button>
+            <div class="main-nav">
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li class="dropdown">
+                        <a href="#">Products <i class="fas fa-chevron-down"></i></a>
+                        <div class="dropdown-menu">
+                            <a href="#wallpaper">Wallpaper</a>
+                            <a href="#marble-sheets">Marble Sheets</a>
+                            <a href="#wall-panels">Wall Panels</a>
+                            <a href="#outdoor-panels">Outdoor Panels</a>
+                        </div>
+                    </li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#gallery">Gallery</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
         </div>
     </nav>
 
@@ -1166,7 +1340,12 @@
             <div class="products-grid">
                 <div class="product-card">
                     <div class="product-badge">New</div>
-                    <img src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Modern Floral Wallpaper" class="product-img">
+                    <div class="product-image-container">
+                        <img src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Modern Floral Wallpaper" class="product-img">
+                        <div class="quick-view-overlay">
+                            <button class="btn btn-secondary quick-view-btn" data-product="1">Quick View</button>
+                        </div>
+                    </div>
                     <div class="product-info">
                         <h3>Modern Floral Wallpaper</h3>
                         <div class="price">$49.99 per roll</div>
@@ -1184,7 +1363,12 @@
                 
                 <div class="product-card">
                     <div class="product-badge sale">Sale</div>
-                    <img src="https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Geometric Pattern Wallpaper" class="product-img">
+                    <div class="product-image-container">
+                        <img src="https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Geometric Pattern Wallpaper" class="product-img">
+                        <div class="quick-view-overlay">
+                            <button class="btn btn-secondary quick-view-btn" data-product="2">Quick View</button>
+                        </div>
+                    </div>
                     <div class="product-info">
                         <h3>Geometric Pattern Wallpaper</h3>
                         <div class="price">
@@ -1204,7 +1388,12 @@
                 </div>
                 
                 <div class="product-card">
-                    <img src="https://images.unsplash.com/photo-1517705008128-361805f42e86?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Textured Wallpaper" class="product-img">
+                    <div class="product-image-container">
+                        <img src="https://images.unsplash.com/photo-1517705008128-361805f42e86?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Textured Wallpaper" class="product-img">
+                        <div class="quick-view-overlay">
+                            <button class="btn btn-secondary quick-view-btn" data-product="3">Quick View</button>
+                        </div>
+                    </div>
                     <div class="product-info">
                         <h3>Textured Wallpaper</h3>
                         <div class="price">$54.99 per roll</div>
@@ -1222,7 +1411,12 @@
                 
                 <div class="product-card">
                     <div class="product-badge hot">Popular</div>
-                    <img src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Custom Print Wallpaper" class="product-img">
+                    <div class="product-image-container">
+                        <img src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Custom Print Wallpaper" class="product-img">
+                        <div class="quick-view-overlay">
+                            <button class="btn btn-secondary quick-view-btn" data-product="4">Quick View</button>
+                        </div>
+                    </div>
                     <div class="product-info">
                         <h3>Custom Print Wallpaper</h3>
                         <div class="price">$79.99 per roll</div>
@@ -1282,7 +1476,12 @@
             
             <div class="products-grid">
                 <div class="product-card">
-                    <img src="https://images.unsplash.com/photo-1605106702734-205df224ecce?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Carrara White Marble Sheet" class="product-img">
+                    <div class="product-image-container">
+                        <img src="https://images.unsplash.com/photo-1605106702734-205df224ecce?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Carrara White Marble Sheet" class="product-img">
+                        <div class="quick-view-overlay">
+                            <button class="btn btn-secondary quick-view-btn" data-product="5">Quick View</button>
+                        </div>
+                    </div>
                     <div class="product-info">
                         <h3>Carrara White Marble</h3>
                         <div class="price">$89.99 per sheet</div>
@@ -1300,7 +1499,12 @@
                 
                 <div class="product-card">
                     <div class="product-badge">New</div>
-                    <img src="https://images.unsplash.com/photo-1600585152220-90363fe7e115?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Calacatta Gold Marble Sheet" class="product-img">
+                    <div class="product-image-container">
+                        <img src="https://images.unsplash.com/photo-1600585152220-90363fe7e115?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Calacatta Gold Marble Sheet" class="product-img">
+                        <div class="quick-view-overlay">
+                            <button class="btn btn-secondary quick-view-btn" data-product="6">Quick View</button>
+                        </div>
+                    </div>
                     <div class="product-info">
                         <h3>Calacatta Gold Marble</h3>
                         <div class="price">$129.99 per sheet</div>
@@ -1318,7 +1522,12 @@
                 
                 <div class="product-card">
                     <div class="product-badge sale">Sale</div>
-                    <img src="https://images.unsplash.com/photo-1600566752355-35792bedcfea?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Statuario White Marble Sheet" class="product-img">
+                    <div class="product-image-container">
+                        <img src="https://images.unsplash.com/photo-1600566752355-35792bedcfea?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Statuario White Marble Sheet" class="product-img">
+                        <div class="quick-view-overlay">
+                            <button class="btn btn-secondary quick-view-btn" data-product="7">Quick View</button>
+                        </div>
+                    </div>
                     <div class="product-info">
                         <h3>Statuario White Marble</h3>
                         <div class="price">
@@ -1338,7 +1547,12 @@
                 </div>
                 
                 <div class="product-card">
-                    <img src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Black Onyx Marble Sheet" class="product-img">
+                    <div class="product-image-container">
+                        <img src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Black Onyx Marble Sheet" class="product-img">
+                        <div class="quick-view-overlay">
+                            <button class="btn btn-secondary quick-view-btn" data-product="8">Quick View</button>
+                        </div>
+                    </div>
                     <div class="product-info">
                         <h3>Black Onyx Marble</h3>
                         <div class="price">$159.99 per sheet</div>
@@ -1398,7 +1612,12 @@
             <div class="products-grid">
                 <div class="product-card">
                     <div class="product-badge hot">Popular</div>
-                    <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="3D Geometric Wall Panel" class="product-img">
+                    <div class="product-image-container">
+                        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="3D Geometric Wall Panel" class="product-img">
+                        <div class="quick-view-overlay">
+                            <button class="btn btn-secondary quick-view-btn" data-product="9">Quick View</button>
+                        </div>
+                    </div>
                     <div class="product-info">
                         <h3>3D Geometric Wall Panel</h3>
                         <div class="price">$29.99 per panel</div>
@@ -1415,7 +1634,12 @@
                 </div>
                 
                 <div class="product-card">
-                    <img src="https://images.unsplash.com/photo-1600566752229-2506e8f02327?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Wooden Wall Panel" class="product-img">
+                    <div class="product-image-container">
+                        <img src="https://images.unsplash.com/photo-1600566752229-2506e8f02327?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Wooden Wall Panel" class="product-img">
+                        <div class="quick-view-overlay">
+                            <button class="btn btn-secondary quick-view-btn" data-product="10">Quick View</button>
+                        </div>
+                    </div>
                     <div class="product-info">
                         <h3>Wooden Wall Panel</h3>
                         <div class="price">$39.99 per panel</div>
@@ -1433,7 +1657,12 @@
                 
                 <div class="product-card">
                     <div class="product-badge">New</div>
-                    <img src="https://images.unsplash.com/photo-1600566752355-35792bedcfea?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Stone Veneer Wall Panel" class="product-img">
+                    <div class="product-image-container">
+                        <img src="https://images.unsplash.com/photo-1600566752355-35792bedcfea?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Stone Veneer Wall Panel" class="product-img">
+                        <div class="quick-view-overlay">
+                            <button class="btn btn-secondary quick-view-btn" data-product="11">Quick View</button>
+                        </div>
+                    </div>
                     <div class="product-info">
                         <h3>Stone Veneer Wall Panel</h3>
                         <div class="price">$49.99 per panel</div>
@@ -1451,7 +1680,12 @@
                 
                 <div class="product-card">
                     <div class="product-badge sale">Sale</div>
-                    <img src="https://images.unsplash.com/photo-1600566752229-2506e8f02327?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Fabric Acoustic Panel" class="product-img">
+                    <div class="product-image-container">
+                        <img src="https://images.unsplash.com/photo-1600566752229-2506e8f02327?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Fabric Acoustic Panel" class="product-img">
+                        <div class="quick-view-overlay">
+                            <button class="btn btn-secondary quick-view-btn" data-product="12">Quick View</button>
+                        </div>
+                    </div>
                     <div class="product-info">
                         <h3>Fabric Acoustic Panel</h3>
                         <div class="price">
@@ -1701,141 +1935,234 @@
         </div>
     </div>
 
-    <script>
-        // Shopping Cart Functionality
+    <!-- Cart Sidebar -->
+    <div class="cart-sidebar">
+        <div class="cart-header">
+            <h3>Your Cart</h3>
+            <button class="close-cart">&times;</button>
+        </div>
+        <div class="cart-items">
+            <!-- Cart items will be added here dynamically -->
+            <p class="empty-cart-message">Your cart is empty</p>
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Total:</span>
+                <span class="total-price">$0.00</span>
+            </div>
+            <button class="btn btn-primary">Checkout</button>
+        </div>
+    </div>
 
-        // Enhanced cart functionality
-        document.addEventListener('DOMContentLoaded', function() {
-            // Cart toggle
-            const cartLink = document.querySelector('.cart-link');
-            const headerCartLink = document.querySelector('.header-cart-link');
-            const cartSidebar = document.querySelector('.cart-sidebar');
-            const closeCart = document.querySelector('.close-cart');
-            
-            function toggleCart() {
-                cartSidebar.classList.toggle('active');
-            }
-            
-            cartLink.addEventListener('click', function(e) {
-                e.preventDefault();
-                toggleCart();
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+        const mainNav = document.querySelector('.main-nav');
+
+        mobileMenuToggle.addEventListener('click', function() {
+            mainNav.classList.toggle('active');
+        });
+
+        // Shopping Cart Functionality
+        const cartLink = document.querySelector('.cart-link');
+        const headerCartLink = document.querySelector('.header-cart-link');
+        const cartSidebar = document.querySelector('.cart-sidebar');
+        const closeCart = document.querySelector('.close-cart');
+        
+        function toggleCart() {
+            cartSidebar.classList.toggle('active');
+        }
+        
+        cartLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            toggleCart();
+        });
+        
+        headerCartLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            toggleCart();
+        });
+        
+        closeCart.addEventListener('click', toggleCart);
+        
+        // Quick View Modal
+        const quickViewBtns = document.querySelectorAll('.quick-view-btn');
+        const productModal = document.getElementById('productModal');
+        const closeModal = document.querySelector('.close-modal');
+        
+        quickViewBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                const productId = this.getAttribute('data-product');
+                // In a real app, you would fetch product details based on productId
+                productModal.style.display = 'block';
+                document.body.style.overflow = 'hidden';
             });
-            
-            headerCartLink.addEventListener('click', function(e) {
-                e.preventDefault();
-                toggleCart();
-            });
-            
-            closeCart.addEventListener('click', toggleCart);
-            
-            // Quick View Modal
-            const quickViewBtns = document.querySelectorAll('.quick-view-btn');
-            const productModal = document.getElementById('productModal');
-            const closeModal = document.querySelector('.close-modal');
-            
-            quickViewBtns.forEach(btn => {
-                btn.addEventListener('click', function() {
-                    const productId = this.getAttribute('data-product');
-                    // In a real app, you would fetch product details based on productId
-                    productModal.style.display = 'block';
-                });
-            });
-            
-            closeModal.addEventListener('click', function() {
+        });
+        
+        closeModal.addEventListener('click', function() {
+            productModal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        });
+        
+        window.addEventListener('click', function(e) {
+            if (e.target === productModal) {
                 productModal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        });
+        
+        // Product thumbnail switching
+        const thumbnails = document.querySelectorAll('.product-thumbnail');
+        const mainImage = document.querySelector('.main-product-image');
+        
+        thumbnails.forEach(thumbnail => {
+            thumbnail.addEventListener('click', function() {
+                thumbnails.forEach(t => t.classList.remove('active'));
+                this.classList.add('active');
+                mainImage.src = this.src;
             });
+        });
+        
+        // Quantity selectors
+        const quantitySelectors = document.querySelectorAll('.quantity-selector');
+        
+        quantitySelectors.forEach(selector => {
+            const minusBtn = selector.querySelector('.minus');
+            const plusBtn = selector.querySelector('.plus');
+            const input = selector.querySelector('input');
             
-            window.addEventListener('click', function(e) {
-                if (e.target === productModal) {
-                    productModal.style.display = 'none';
+            minusBtn.addEventListener('click', function() {
+                let value = parseInt(input.value);
+                if (value > 1) {
+                    input.value = value - 1;
                 }
             });
             
-            // Product thumbnail switching
-            const thumbnails = document.querySelectorAll('.product-thumbnail');
-            const mainImage = document.querySelector('.main-product-image');
-            
-            thumbnails.forEach(thumbnail => {
-                thumbnail.addEventListener('click', function() {
-                    thumbnails.forEach(t => t.classList.remove('active'));
-                    this.classList.add('active');
-                    mainImage.src = this.src;
-                });
+            plusBtn.addEventListener('click', function() {
+                let value = parseInt(input.value);
+                input.value = value + 1;
             });
-            
-            // Quantity selectors
-            const quantitySelectors = document.querySelectorAll('.quantity-selector');
-            
-            quantitySelectors.forEach(selector => {
-                const minusBtn = selector.querySelector('.minus');
-                const plusBtn = selector.querySelector('.plus');
-                const input = selector.querySelector('input');
+        });
+        
+        // Add to cart functionality
+        const addToCartBtns = document.querySelectorAll('.btn-primary:not(.modal-actions .btn-primary)');
+        const cartCount = document.querySelector('.cart-count');
+        const headerCartCount = document.querySelector('.header-cart-link .cart-count');
+        const cartItemsContainer = document.querySelector('.cart-items');
+        const emptyCartMessage = document.querySelector('.empty-cart-message');
+        const totalPriceElement = document.querySelector('.total-price');
+        
+        let cartItems = [];
+        let totalPrice = 0;
+        
+        addToCartBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                // Get product info (in a real app, this would come from a data attribute or API)
+                const productCard = this.closest('.product-card');
+                const productName = productCard.querySelector('h3').textContent;
+                const productPrice = parseFloat(productCard.querySelector('.price').textContent.replace(/[^0-9.]/g, ''));
+                const productImage = productCard.querySelector('.product-img').src;
                 
-                minusBtn.addEventListener('click', function() {
-                    let value = parseInt(input.value);
-                    if (value > 1) {
-                        input.value = value - 1;
-                    }
+                // Add to cart
+                cartItems.push({
+                    name: productName,
+                    price: productPrice,
+                    image: productImage,
+                    quantity: 1
                 });
                 
-                plusBtn.addEventListener('click', function() {
-                    let value = parseInt(input.value);
-                    input.value = value + 1;
-                });
+                updateCart();
+                
+                // Add animation
+                cartCount.style.transform = 'scale(1.5)';
+                headerCartCount.style.transform = 'scale(1.5)';
+                setTimeout(() => {
+                    cartCount.style.transform = 'scale(1)';
+                    headerCartCount.style.transform = 'scale(1)';
+                }, 300);
             });
+        });
+        
+        function updateCart() {
+            // Update cart count
+            const itemCount = cartItems.reduce((total, item) => total + item.quantity, 0);
+            cartCount.textContent = itemCount;
+            headerCartCount.textContent = itemCount;
             
-            // Add to cart functionality
-            const addToCartBtns = document.querySelectorAll('.btn-primary');
-            const cartCount = document.querySelector('.cart-count');
-            const headerCartCount = document.querySelector('.header-cart-link .cart-count');
+            // Update cart items display
+            cartItemsContainer.innerHTML = '';
             
-            addToCartBtns.forEach(btn => {
-                btn.addEventListener('click', function() {
-                    let count = parseInt(cartCount.textContent);
-                    cartCount.textContent = count + 1;
-                    headerCartCount.textContent = count + 1;
+            if (cartItems.length === 0) {
+                emptyCartMessage.style.display = 'block';
+                totalPrice = 0;
+            } else {
+                emptyCartMessage.style.display = 'none';
+                totalPrice = 0;
+                
+                cartItems.forEach((item, index) => {
+                    totalPrice += item.price * item.quantity;
                     
-                    // Add animation
-                    cartCount.style.transform = 'scale(1.5)';
-                    headerCartCount.style.transform = 'scale(1.5)';
-                    setTimeout(() => {
-                        cartCount.style.transform = 'scale(1)';
-                        headerCartCount.style.transform = 'scale(1)';
-                    }, 300);
+                    const cartItemElement = document.createElement('div');
+                    cartItemElement.className = 'cart-item';
+                    cartItemElement.innerHTML = `
+                        <div class="cart-item-image">
+                            <img src="${item.image}" alt="${item.name}">
+                        </div>
+                        <div class="cart-item-details">
+                            <h4>${item.name}</h4>
+                            <div class="cart-item-price">$${item.price.toFixed(2)} x ${item.quantity}</div>
+                            <div class="cart-item-actions">
+                                <button class="btn btn-secondary cart-item-remove" data-index="${index}">Remove</button>
+                            </div>
+                        </div>
+                    `;
+                    cartItemsContainer.appendChild(cartItemElement);
                 });
-            });
-            
-            // Contact form submission
-            const contactForm = document.getElementById('contactForm');
-            
-            contactForm.addEventListener('submit', function(e) {
-                e.preventDefault();
                 
-                // Get form values
-                const name = document.getElementById('name').value;
-                const email = document.getElementById('email').value;
-                const phone = document.getElementById('phone').value;
-                const interest = document.getElementById('interest').value;
-                const message = document.getElementById('message').value;
-                
-                // In a real app, you would send this data to your backend
-                console.log('Form submitted:', { name, email, phone, interest, message });
-                
-                // Show success message
-                alert('Thank you for your message! We will get back to you soon.');
-                
-                // Reset form
-                contactForm.reset();
-            });
-            
-            // Filter functionality
-            const filterSelects = document.querySelectorAll('.filter-select');
-            
-            filterSelects.forEach(select => {
-                select.addEventListener('change', function() {
-                    // In a real app, you would filter products based on the selected filters
-                    console.log('Filter changed:', this.id, this.value);
+                // Add event listeners to remove buttons
+                document.querySelectorAll('.cart-item-remove').forEach(btn => {
+                    btn.addEventListener('click', function() {
+                        const index = parseInt(this.getAttribute('data-index'));
+                        cartItems.splice(index, 1);
+                        updateCart();
+                    });
                 });
+            }
+            
+            // Update total price
+            totalPriceElement.textContent = `$${totalPrice.toFixed(2)}`;
+        }
+        
+        // Contact form submission
+        const contactForm = document.getElementById('contactForm');
+        
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form values
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const interest = document.getElementById('interest').value;
+            const message = document.getElementById('message').value;
+            
+            // In a real app, you would send this data to your backend
+            console.log('Form submitted:', { name, email, phone, interest, message });
+            
+            // Show success message
+            alert('Thank you for your message! We will get back to you soon.');
+            
+            // Reset form
+            contactForm.reset();
+        });
+        
+        // Filter functionality
+        const filterSelects = document.querySelectorAll('.filter-select');
+        
+        filterSelects.forEach(select => {
+            select.addEventListener('change', function() {
+                // In a real app, you would filter products based on the selected filters
+                console.log('Filter changed:', this.id, this.value);
             });
         });
     </script>
